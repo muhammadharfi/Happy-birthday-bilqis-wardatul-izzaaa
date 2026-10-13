@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday !!! 💜✨</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="[suspicious link removed]">
+    <link rel="preconnect" href="[suspicious link removed]" crossorigin>
+    <link href="[suspicious link removed]" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2e0854, #5c2494, #8b5cf6, #3b0764);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #4a154b;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Decoration Background */
+        .decoration-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-item {
+            position: absolute;
+            font-size: 26px;
+            animation: floatAnim 6s ease-in-out infinite alternate;
+            opacity: 0.85;
+        }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(15deg); }
+        }
+
+        /* Main Card Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 3px solid #d8b4fe;
+        }
+
+        /* Badge Hiasan Top */
+        .decor-badges {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        /* Slide Control */
+        .slide {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Title Styling */
+        h1 {
+            font-family: 'Caveat', cursive;
+            color: #6b21a8;
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Caveat', cursive;
+            color: #7e22ce;
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        p.desc {
+            font-size: 0.95rem;
+            color: #581c87;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Interactive Letter Envelope */
+        .envelope-wrapper {
+            cursor: pointer;
+            margin: 20px 0;
+            perspective: 1000px;
+        }
+
+        .letter-card {
+            background: #f3e8ff;
+            border: 2px dashed #a855f7;
+            border-radius: 16px;
+            padding: 20px;
+            min-height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .letter-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2);
+        }
+
+        .click-hint {
+            color: #9333ea;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .letter-content {
+            display: none;
+            font-size: 0.93rem;
+            color: #3b0764;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-line;
+            animation: openLetter 0.6s ease forwards;
+        }
+
+        /* Class bantuan untuk menampilkan/menyembunyikan */
+        .is-hidden {
+            display: none !important;
+        }
+
+        .is-visible {
+            display: block !important;
+        }
+
+        @keyframes openLetter {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #9333ea, #7e22ce);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+        }
+
+        .btn:disabled {
+            background: #cbd5e1;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* Wishlist Input */
+        textarea {
+            width: 100%;
+            height: 120px;
+            border: 2px solid #c084fc;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 0.95rem;
+            outline: none;
+            resize: none;
+            background: #faf5ff;
+            color: #3b0764;
+            margin-top: 10px;
+        }
+
+        textarea:focus {
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.2);
+        }
+
+        .error-msg {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Elements (Bunga, Cookies, Ferrari F1) -->
+    <div class="decoration-bg">
+        <div class="floating-item" style="top: 10%; left: 10%;">🌸</div>
+        <div class="floating-item" style="top: 20%; right: 12%; animation-delay: 1s;">🍪</div>
+        <div class="floating-item" style="top: 75%; left: 8%; animation-delay: 2s;">🏎️🔴</div>
+        <div class="floating-item" style="top: 80%; right: 15%; animation-delay: 1.5s;">🌺</div>
+        <div class="floating-item" style="top: 45%; left: 5%; animation-delay: 2.5s;">🍪</div>
+        <div class="floating-item" style="top: 50%; right: 8%; animation-delay: 0.5s;">🌸</div>
+    </div>
+
+    <div class="container">
+        <div class="decor-badges">🌸 🍪 🏎️ 💜</div>
+
+        <!-- COVER -->
+        <div class="slide active" id="slide-0">
+            <h1>Happy Birthday !!! 🥳🤍🎂</h1>
+            <p class="desc">Ada kejutan spesial khusus buat kamu hari ini. Coba klik tombol di bawah yuk! ✨</p>
+            <button class="btn" onclick="goToSlide(1)">Buka Kejutan 💌</button>
+        </div>
+
+        <!-- SLIDE 1 -->
+        <div class="slide" id="slide-1">
+            <h2>Surat #1 💌</h2>
+            <div class="envelope-wrapper" onclick="openEnvelope(1)">
+                <div class="letter-card" id="card-1">
+                    <div class="click-hint" id="hint-1">
+                        <span>✉️</span>
+                        <span>Pencet layar / kertas ini buat buka suratnya yaaa!</span>
+                    </div>
+                    <div class="letter-content" id="content-1">
+HAPPYYY BIRTHDAYYYY !!! 🥳🤍🎂
+
+Gimana kabar, baee ?. happy birthday yaaa lu, selamat bertambah usiaaa. hari ini harus jadi hari yang spesial buat lu, yaa. gua harap hari ini banyak hal baik yang dateng ke hidup lu, banyak senyum yang bisa gua yakin bikin hari lu jauh lebih seneng, dan banyak alasan yang bikin lu ngerasa kalau ternyata hidup ini masih punya banyak hal menyenangkan buat lu nikmatin. pokoknya hari ini lu harus bahagiaaa, jangan kebanyakan mikir, jangan kebanyakan sedih, dan jangan lupa senyum, yaa. karena hari ini adalah hari ketika seseorang yang berharga lahir ke dunia, dan seseorang itu adalah luuu. 🤍
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="btn-1" disabled onclick="goToSlide(2)">Lanjut ➔</button>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" id="slide-2">
+            <h2>Surat #2 💌</h2>
+            <div class="envelope-wrapper" onclick="openEnvelope(2)">
+                <div class="letter-card" id="card-2">
+                    <div class="click-hint" id="hint-2">
+                        <span>✉️</span>
+                        <span>Pencet suratnya lagi buat buka isinya ✨</span>
+                    </div>
+                    <div class="letter-content" id="content-2">
+gua sebenernya pengen banget bisa ngucapin ini secara langsung. pengen bisa jadi salah satu orang yang hadir langsung di hari spesial lu, ikut ngerayain pertambahan usia lu, ngeliat senyum lu, dan ikut bahagia karena orang yang gua sayang lagi ngerayain hari kelahirannya. mungkin kedengarannya sederhana, tapi kadang justru hal-hal sederhana kayak gitu yang paling pengen gua rasain.
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="btn-2" disabled onclick="goToSlide(3)">Lanjut ➔</button>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" id="slide-3">
+            <h2>Surat #3 💌</h2>
+            <div class="envelope-wrapper" onclick="openEnvelope(3)">
+                <div class="letter-card" id="card-3">
+                    <div class="click-hint" id="hint-3">
+                        <span>✉️</span>
+                        <span>Pencet buat baca pesan selanjutnya 💜</span>
+                    </div>
+                    <div class="letter-content" id="content-3">
+semoga umur baru ini membawa lu ke banyak hal yang selama ini lu harapkan. semoga lu selalu punya alasan buat tersenyum, selalu punya keberanian buat memulai sesuatu yang baru, dan selalu menemukan jalan pulang menuju ketenangan setiap kali dunia terasa terlalu ramai dan rumit untuk dijalani
+
+jangan lupa jaga diri baik-baik, yaa. makan yang teratur, istirahat kalau capek, jangan terlalu keras sama diri sendiri.
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="btn-3" disabled onclick="goToSlide(4)">Lanjut ➔</button>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" id="slide-4">
+            <h2>Surat #4 💌</h2>
+            <div class="envelope-wrapper" onclick="openEnvelope(4)">
+                <div class="letter-card" id="card-4">
+                    <div class="click-hint" id="hint-4">
+                        <span>✉️</span>
+                        <span>Pencet lagi kertasnya yaaa ✨</span>
+                    </div>
+                    <div class="letter-content" id="content-4">
+Semoga hari ini baik sama lu, semoga hari-hari setelahnya lebih baik lagi, dan semoga apa pun yang menunggu lu di depan sana membawa lebih banyak kebahagiaan daripada yang pernah lu bayangkan.
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="btn-4" disabled onclick="goToSlide(5)">Lanjut ➔</button>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" id="slide-5">
+            <h2>Surat #5 💌</h2>
+            <div class="envelope-wrapper" onclick="openEnvelope(5)">
+                <div class="letter-card" id="card-5">
+                    <div class="click-hint" id="hint-5">
+                        <span>✉️</span>
+                        <span>Surat terakhir, pencet buat buka 🤍</span>
+                    </div>
+                    <div class="letter-content" id="content-5">
+happy birthday, yaa. semoga lu selalu bahagia. dan kalau suatu hari nanti kehidupan memberi kita kesempatan untuk bertemu kembali di jalan yang sama, semoga saat itu kita sudah menjadi dua orang yang lebih siap untuk saling menjaga. 🤍
+                    </div>
+                </div>
+            </div>
+            <button class="btn" id="btn-5" disabled onclick="goToSlide(6)">Lanjut Ke Kado 🎁</button>
+        </div>
+
+        <!-- SLIDE WISHLIST (PILIH KADO) -->
+        <div class="slide" id="slide-6">
+            <h2>Mau kado apa tahun ini? 🎁</h2>
+            <p class="desc">Tulis semua kado / keinginan lu di bawah ini yaaa! Gua mau tau lu pengen apa aja 🤍</p>
+            <textarea id="wishlist-input" placeholder="Tulis wishlist / kado impian lu di sini... (misal: cookies, merchandise Ferrari F1, dll)"></textarea>
+            <div class="error-msg" id="error-msg">yahhh kok ga di isi sii 🥺 diisi dulu donggg wishlist-nya!</div>
+            <button class="btn" onclick="submitWishlist()">Kirim Ke Aku 💌</button>
+        </div>
+
+        <!-- SLIDE PENUTUP -->
+        <div class="slide" id="slide-7">
+            <h1>Ditunggu yaa kadonyaa 🤍✨</h1>
+            <p class="desc">Makasih udah ngisi wishlist-nya! Semoga hari lu selalu penuh dengan kebahagiaan 🍪🏎️🌸</p>
+        </div>
+
+    </div>
+
+    <script>
+        var EMAIL_KAMU = "muhammad.harfi050607@gmail.com";
+
+        function goToSlide(slideNum) {
+            var slides = document.querySelectorAll('.slide');
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+
+            var targetSlide = document.getElementById('slide-' + slideNum);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+        }
+
+        function openEnvelope(num) {
+            var hint = document.getElementById('hint-' + num);
+            var content = document.getElementById('content-' + num);
+            var btn = document.getElementById('btn-' + num);
+
+            if (hint) {
+                hint.classList.add('is-hidden');
+            }
+            if (content) {
+                content.classList.add('is-visible');
+            }
+            if (btn) {
+                btn.disabled = false;
+            }
+        }
+
+        function submitWishlist() {
+            var inputEl = document.getElementById('wishlist-input');
+            var errorEl = document.getElementById('error-msg');
+            var val = inputEl ? inputEl.value.trim() : '';
+
+            if (val === '') {
+                if (errorEl) {
+                    errorEl.classList.remove('is-hidden');
+                    errorEl.classList.add('is-visible');
+                }
+                return;
+            }
+
+            if (errorEl) {
+                errorEl.classList.remove('is-visible');
+                errorEl.classList.add('is-hidden');
+            }
+
+            var subject = 'Wishlist Kado Ulang Tahun My World 🎁';
+            var body = 'Halo! Ini wishlist kado ulang tahunku tahun ini 🎁:\n\n' + val;
+            var mailtoUrl = 'mailto:' + EMAIL_KAMU + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+            window.location.href = mailtoUrl;
+            goToSlide(7);
+        }
+    </script>
+</body>
+</html>
